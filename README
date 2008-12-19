@@ -1,5 +1,12 @@
 Instructions:
 
+Get your API Key:
+
+  Just log into your HelloCreature account and click on "Installation Instructions" under the Setup menu.
+  Your API key will be all the way at the bottom.
+
+  If you don't have an account, it's quick to set one up and we only charge $0.005 per email sent.
+
 Install libcurl:
   
   sudo aptitude install libcurl4-openssl-dev
