@@ -1,0 +1,12 @@
+- Update to latest eventmachine compatibility (the basic auth options 
+  syntax has changed and evented sending is currently broken if you're 
+  using the latest eventmachine)
+
+- Replace the curb method with the latest ruby httpclient which 
+  should be faster: http://dev.ctor.org/http-access2/
+
+- add a way to choose whether the email should be sent as bulk or 
+  non-bulk (all are assumed to be non-bulk at present)
+
+- add additional tracking/monitoring features avilable via 
+  hellocreature.com once you log in.

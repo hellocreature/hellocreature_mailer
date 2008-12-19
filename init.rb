@@ -1,0 +1,1 @@
+require 'hellocreature_mailer'
