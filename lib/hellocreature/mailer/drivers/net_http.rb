@@ -5,7 +5,7 @@ module HelloCreature
 
         def perform_delivery_hellocreature_with_driver( mail )
           settings = hellocreature_mailer_settings
-          url = URI.parse(::HelloCreature::Mailer::ENDPOINT_URL + ::HelloCreature::Mailer::ENDPOINT_PATH)
+          url = URI.parse(::HelloCreature::Mailer::ENDPOINT)
           req = Net::HTTP::Post.new(url.path)
           req.basic_auth settings[:email], settings[:api_key]
           req.set_form_data({'message'=>mail.to_s})

@@ -3,10 +3,7 @@ $:.unshift File.dirname(__FILE__) + '/../lib'
 require 'rubygems'
 require 'actionmailer'
 require 'rmail'
-require 'eventmachine'
-#require 'hellocreature/mailer'
-#require 'actionmailer/base'
-require 'init.rb'
+require 'rails/init.rb'
 
 
 ActionMailer::Base.delivery_method = :hellocreature

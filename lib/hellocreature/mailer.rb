@@ -1,8 +1,11 @@
 module HelloCreature
   module Mailer
-    ENDPOINT_URL = "http://hellocreature.com"
+    ENDPOINT_PROTOCOL = "http://"
+    ENDPOINT_URL = "hellocreature.com"
     ENDPOINT_PATH = "/messages"
 
+    ENDPOINT = ENDPOINT_PROTOCOL + ENDPOINT_URL + ENDPOINT_PATH
+    
     # Tries to load EM, then curb, then falls back to net/http as the driver to use to make the http post
     def self.include_driver
       begin

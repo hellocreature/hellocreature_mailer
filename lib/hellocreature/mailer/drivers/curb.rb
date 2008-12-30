@@ -4,7 +4,7 @@ module HelloCreature
       module Curb
         
         def perform_delivery_hellocreature_with_driver( mail )
-          ::Curl::Easy.new(::HelloCreature::Mailer::ENDPOINT_URL + ::HelloCreature::Mailer::ENDPOINT_PATH) do |easy|
+          ::Curl::Easy.new(::HelloCreature::Mailer::ENDPOINT) do |easy|
             settings = hellocreature_mailer_settings
             easy.userpwd = "#{settings[:email]}:#{settings[:api_key]}" 
             easy.http_post(Curl::PostField.content('message', mail.to_s) )

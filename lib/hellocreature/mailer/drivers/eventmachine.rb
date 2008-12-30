@@ -11,12 +11,12 @@ module HelloCreature
           send_mail_proc = proc do |stop_event_loop|
             
             client = ::EventMachine::Protocols::HttpClient.request(
-              :host=>::HelloCreature::Mailer::ENDPOINT_URL,
-              :port=>80, 
-              :verb=>:post, 
-              :request=>::HelloCreature::Mailer::ENDPOINT_PATH, 
-              :content=>raw_post_content,
-              :contenttype=>"application/x-www-form-urlencoded",
+              :host=> ::HelloCreature::Mailer::ENDPOINT_URL,
+              :port=> 80, 
+              :verb=> :post, 
+              :request=> ::HelloCreature::Mailer::ENDPOINT_PATH, 
+              :content=> raw_post_content,
+              :contenttype=> "application/x-www-form-urlencoded",
               :basic_auth => {:username => settings[:email], :password => settings[:api_key]}
 	      )
             
@@ -39,12 +39,6 @@ module HelloCreature
             end
           end
           
-        rescue RuntimeError
-          # we revert to net/http if we get a runtime error, as it means that for some reason EM is not working
-          puts "HelloCreature::Mailer: EventMachine Runtime Error, falling back to net/http"
-          require 'net/http'
-          ActionMailer::Base.send(:include, ::HelloCreature::Mailer::Drivers::NetHttp)
-          perform_delivery_hellocreature_with_driver( mail )
         end
         
       end
