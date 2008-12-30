@@ -1,1 +1,3 @@
-require 'hellocreature_mailer'
+require 'hellocreature/mailer'
+require 'actionmailer/base'
+

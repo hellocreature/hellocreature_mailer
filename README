@@ -7,35 +7,23 @@ Get your API Key:
 
   If you don't have an account, it's quick to set one up and we only charge $0.005 per email sent.
 
-Install libcurl:
+Install EventMachine
+
+  sudo gem install eventmachine 
+
+Or install libcurl and curb:
   
   sudo aptitude install libcurl4-openssl-dev
-
-Install curb:
-
   sudo gem install curb
-  sudo gem install eventmachine  (if you prefer to send mail very fast).
 
-Require the gem in config/initializers/hellocreature_mailer.rb
-  require 'eventmachine'
-
-  or
-
-  require 'curb'
-
-Set up your Rails config to use hellocreature_mailer
+Then set up your Rails config to use hellocreature_mailer
 
   ActionMailer::Base.delivery_method = :hellocreature
   ActionMailer::Base.hellocreature_mailer_settings = {:email => 'your@email', :api_key => 'secret'}
 
-By default it will use Curl::Easy from the curb gem, but if you specify :evented => true it will use Eventmachine and 
-be much faster.
-
-  ActionMailer::Base.hellocreature_mailer_settings = {:email => 'your@email', 
-                                                      :api_key => 'secret', 
-                                                      :evented => true}
   
-If you want to send mail very fast, you just need to create an event loop around your call to deliver the message:
+If you are not otherwise using an event loop and want to send mail very fast, you just need to create an event loop 
+around your call to deliver the message:
 
 (If you are using Mongrel, Thin, etc., there is already a an event loop 
 reactor running so you can just call the normal deliver method.)
@@ -47,6 +35,6 @@ EM.run do
 end
 
 
-Your mails will be signed by your DKIM authenticator in 
+Your mails will be signed by your DKIM and DomainKeys authenticators in 
 HelloCreature and also stamped with HashCash prior to being sent.
 

@@ -1,14 +1,18 @@
+$:.unshift File.dirname(__FILE__) + '/../lib'
+
 require 'rubygems'
 require 'actionmailer'
 require 'rmail'
 require 'eventmachine'
-require '../lib/hellocreature_mailer'
+#require 'hellocreature/mailer'
+#require 'actionmailer/base'
+require 'init.rb'
+
 
 ActionMailer::Base.delivery_method = :hellocreature
 ActionMailer::Base.hellocreature_mailer_settings = {
-  :email => 'test@hellocreature.com', 
-  :api_key => 'secret', 
-  :evented => false
+  :email => ENV['HELLOCREATURE_EMAIL'], 
+  :api_key => ENV['HELLOCREATURE_API_KEY']
 }
 
 ActionMailer::Base.default_charset = "utf-8"
@@ -25,6 +29,7 @@ class MyMailer < ActionMailer::Base
   end
 end
 
-MyMailer.deliver_signup_notification
-
+#EM.run do
+ MyMailer.deliver_signup_notification
+#end
 # check inbox
